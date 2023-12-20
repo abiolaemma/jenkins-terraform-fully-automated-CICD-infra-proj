@@ -77,8 +77,8 @@ resource "aws_instance" "web_server" {
   tags                   = merge(var.tags, { Name = join("", [var.name, "-", "webserver"]) }, { Environment = var.name })
 
   # best practices as per checkov scanner
-  monitoring    = true
-  ebs_optimized = true
+  monitoring    = true  #Enhanced moniroing for EC2 is every 1min, normall default cloudwatch is every 5min
+  ebs_optimized = true #will not support t2.micro, t2 doesn't support ebs optimization
    root_block_device {
      encrypted = true
    }
